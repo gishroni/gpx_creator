@@ -1,6 +1,8 @@
 document.body.style.border = "5px solid blue";
 
+
 (function() {
+	var coordinates = [];
 	  /**
 	   * Check and set a global guard variable.
 	   * If this content script is injected into the same page again,
@@ -34,6 +36,10 @@ document.body.style.border = "5px solid blue";
 	      beast.remove();
 	    }
 	  }
+	  
+	  function addCoordToList(coord) {
+		  coordinates.push(coord);
+	  }
 
 	  /**
 	   * Listen for messages from the background script.
@@ -44,7 +50,20 @@ document.body.style.border = "5px solid blue";
 	      insertBeast(message.beastURL);
 	    } else if (message.command === "reset") {
 	      removeExistingBeasts();
-	    }
+	    }  else if (message.command === "add") {
+	      addCoordToList(message.coord);
+	    } else if (message.command === "getCoord") {
+	    	return new Promise((resolve, reject) => {
+	    		var lat = "getCoord";
+	    		var lon = "getCoord";
+	    		var ele = "getCoord";
+	    		// create a json string
+	    		var json = { "lat":lat, "lon":lon, "ele":ele };
+	    		var jsonString = JSON.stringify( json );
+	    	    resolve(jsonString); // fulfilled
+	    	    // or
+	    	    reject("Error while obtaining saved coordiates"); // rejected
+	    	});	    } 
 	  });
 
 })();

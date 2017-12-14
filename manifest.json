@@ -32,6 +32,13 @@
    
   "web_accessible_resources": [
     "images/snake.jpg"
+  ],
+  
+   "content_scripts": [
+    {
+      "matches": ["*://*.map.geo.admin.ch/*"],
+      "js": ["content_scripts/manage_waypoint.js"]
+    }
   ]
 
 }

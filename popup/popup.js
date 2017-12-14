@@ -15,19 +15,26 @@ function listenForClicks() {
   document.addEventListener("click", (e) => {
 	  
     /**
-	 * Insert the page-hiding CSS into the active tab, then get the beast URL
-	 * and send a "beastify" message to the content script in the active tab.
-	 */
-    function beastify(tabs) {
-      browser.tabs.insertCSS({code: hidePage}).then(() => {
-    	// Given the name of a beast, get the URL to the corresponding image.
-        let url = browser.extension.getURL("images/snake.jpg");
+     * add coordinates to list in background script
+     */
+    function addCoord(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
-          command: "beastify",
-          beastURL: url
+          command: "add",
+          coord: coordObj
         });
-      });
+        updateCoordinates(tabs);
     }
+    
+    function updateCoordinates(tabs) {
+    	var response = browser.tabs.sendMessage(tabs[0].id, {
+    		command: "getCoord",
+    	});
+//    	message.then((response) => {
+//    		coordObj = JSON.parse(response);	
+//    	});
+    	
+   	document.querySelector("#savedCoord").innerHTML = "coordObj";
+   }
 
     /**
 	 * Remove the page-hiding CSS from the active tab, send a "reset" message to
@@ -53,7 +60,7 @@ function listenForClicks() {
 	 */
     if (e.target.classList.contains("add")) {
       browser.tabs.query({active: true, currentWindow: true})
-        .then(beastify)
+        .then(addCoord)
         .catch(reportError);
     }
     else if (e.target.classList.contains("export")) {
@@ -75,23 +82,27 @@ function reportExecuteScriptError(error) {
   console.error(`Failed to execute beastify content script: ${error.message}`);
 }
 
-/**
- * When the popup loads, inject a content script into the active tab, and add a
- * click handler. If we couldn't inject the script, handle the error.
- */
-browser.tabs.executeScript({file: "/content_scripts/get_waypoint.js"})
-.then(listenForClicks)
-.catch(reportExecuteScriptError);
+///**
+// * When the popup loads, inject a content script into the active tab, and add a
+// * click handler. If we couldn't inject the script, handle the error.
+// */
+//browser.tabs.executeScript({file: "/content_scripts/manage_waypoint.js"})
+//.then(listenForClicks)
+//.catch(reportExecuteScriptError);
 
 /**
  * get current coordinates from webpage and display them in the popup
  */
 var response = browser.tabs.executeScript({file: "/content_scripts/get_coordinates.js"});
+listenForClicks();
 addCoordToPopup(response);
 
 function addCoordToPopup(message) {
-	message.then((coordinates) => {
-		document.querySelector("#coordinateData").innerHTML = coordinates;
+	message.then((coordJson) => {
+		coordObj = JSON.parse(coordJson);	
+		document.querySelector("#lat").innerHTML = coordObj.lat;
+		document.querySelector("#lon").innerHTML = coordObj.lon;
+		document.querySelector("#ele").innerHTML = coordObj.ele;
 	}).catch((error) => {
 		document.querySelector("#coordinateData").innerHTML = "No coordinates are available";
         console.log("No coordinates could be obtained from webpage: " + reason);
