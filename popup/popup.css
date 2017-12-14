@@ -1,0 +1,39 @@
+html, body {
+  width: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.beast:hover {
+  background-color: #CFF2F2;
+}
+
+.add {
+  background-color: #E5F2F2;
+}
+
+.coordinate-head {
+	  font-size: 1.3em;
+}
+
+.coordinates {
+	  font-size: 1em;
+}
+
+.export {
+  background-color: #FBFBC9;
+}
+
+.reset:hover {
+  background-color: #EAEA9D;
+}

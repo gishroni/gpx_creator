@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+	<div id="coordinates">
+		<div class="coordinate-head" >Current coordinates </div>
+		<div class="coordinates">(at current mouse position):</div>
+		<p>
+		<div class="coordinates" id="coordinateData">No data</div>
+	</div>
+	<p>
+	<div id="popup-content">
+		<div class="button add">Add coordinates</div>
+		<div class="button export">Export coordinates</div>
+	</div>
+	<div id="error-content" class="hidden">
+		<p>Can't get coordinates from this web page.</p>
+	</div>
+	<script src="popup.js"></script>
+</body>
+</html>
+

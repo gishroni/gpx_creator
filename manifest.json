@@ -1,0 +1,37 @@
+{
+
+  "manifest_version": 2,
+  "name": "Waypoint",
+  "version": "1.0",
+
+  "description": "Adds a red border to all webpages matching mozilla.org.",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  
+   "browser_action": {
+        "default_icon": "icons/border-48.png",
+        "default_title": "Waypoint",
+        "default_popup": "popup/popup.html"
+    },
+    
+    "permissions": [
+    "activeTab"
+  ],
+
+
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Alt+W"
+            }
+        }
+    },
+  
+   
+  "web_accessible_resources": [
+    "images/snake.jpg"
+  ]
+
+}
