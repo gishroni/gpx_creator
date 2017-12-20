@@ -1,39 +1,73 @@
 html, body {
-  width: 200px;
+	width: 330px;
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
 
 .button {
-  margin: 3% auto;
-  padding: 4px;
-  text-align: center;
-  font-size: 1.5em;
-  cursor: pointer;
+	margin: 3% auto;
+	padding: 4px;
+	text-align: center;
+	font-size: 1.2em;
+	cursor: pointer;
 }
 
-.beast:hover {
-  background-color: #CFF2F2;
+.no-coordinates-message {
+	font-size: 1.3em;
+	background-color: #ff6464;
 }
 
 .add {
-  background-color: #E5F2F2;
+	background-color: #E5F2F2;
+	width: 150px;
+	float: right;
+/* 	font-size: 1.1em; */
+}
+
+.add:hover {
+	background-color: #EAEA9D;
+}
+
+.saved-coordiantes {
+	width: 95%;
+}
+
+.footer {
+	margin-top: 20px;
+	margin-bottom: 0px; '
+	height: 100px;
 }
 
 .coordinate-head {
-	  font-size: 1.3em;
+	font-size: 1.3em;
+	margin-bottom: 7px;
 }
 
-.coordinates {
-	  font-size: 1em;
+.waypoint-name-input {
+	margin-left: 3px;
 }
 
 .export {
-  background-color: #FBFBC9;
+	background-color: #FBFBC9;
+	float: right;
 }
 
-.reset:hover {
-  background-color: #EAEA9D;
+.coord {
+	font-size: 1.1em;
+	margin-bottom: 2px;
+}
+
+.coord-number {
+	font-weight: bold;
+}
+
+.current-coordinate {
+	width: 97%;
+	height: 145px;
+	border: 2px solid black;
+	padding: 7px;
+	background-color: #a6ffff;
+	font-size: 1em;
 }

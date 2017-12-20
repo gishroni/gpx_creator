@@ -7,22 +7,25 @@
 </head>
 
 <body>
-	<div id="coordinates">
-		<div class="coordinate-head" >Current coordinates </div>
-		<div class="coordinates">(at current mouse position):</div>
+	<div class="coordinate-head" id="coordinatesHead">Current coordinates:</div>
+	<div class=current-coordinate id="coordinatesDetails">
+		<div>Lat: <span id="lat">n/a</span></div>
+		<div>Lon: <span id="lon">n/a</span></div>
+		<div>Ele: <span id="ele">n/a</span></div>
 		<p>
-		<div class="coordinates">Lat: <span id="lat">n/a</span></div>
-		<div class="coordinates">Lon: <span id="lon">n/a</span></div>
-		<div class="coordinates">Ele: <span id="ele">n/a</span></div>
-		
+		<form>
+			<span class="waypoint-name-label">Waypoint name:</span>
+			<input class="waypoint-name-input" type="text" id="wptName" placeholder=" Enter a name">
+		</form>
+		<div class="button add">Add coordinates</div>
 	</div>
 	<p>
-	<div id="popup-content">
-		<div class="button add">Add coordinates</div>
-		<p>
-		<div class="saved-coordiantes" id="savedCoord">saved</div>
-		<p>
-		<div class="button export">Export coordinates</div>
+	<div class="saved-coordiantes">
+		<div class=coordinate-head>Saved coordinates:</div>
+		<div id="savedCoord">(No coordinates are listed)</div>
+	</div>
+	<div class="footer">
+		<div class="button export">Export and reset coordinates</div>
 	</div>
 	<div id="error-content" class="hidden">
 		<p>Can't get coordinates from this web page.</p>
