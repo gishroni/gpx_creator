@@ -1,4 +1,5 @@
 var coordArray = [];
+var fileName = "waypoints.gpx"
 
 /**
  * Listen for clicks on the buttons, and send the appropriate message to the
@@ -35,12 +36,22 @@ function listenForClicks() {
 
     	var XML = new XMLWriter();
     	XML.BeginNode("gpx");
+    	XML.Attrib("version", "1.1");
+    	XML.Attrib("creator", "waypoints-creator");
     	
+    	XML.BeginNode("metadata");
+    	XML.Node("name", fileName);
+    	XML.Node("author", "This file was generated from the swiss topo online map using the waypoint Firefox extension");
+    	XML.Node("link", "link to add on");
+    	XML.EndNode();
+
     	for (var i = 0; i < length; i++) {
 	    	XML.BeginNode("wpt");
-	    	XML.Attrib("lat", coordArray[i].lat);
-	    	XML.Attrib("lon", coordArray[i].lon);
-	    	XML.Node("ele", coordArray[i].ele);
+	    	XML.Attrib("lat", coordArray[i].lat.trim());
+	    	XML.Attrib("lon", coordArray[i].lon.trim());
+	    	XML.Node("ele", coordArray[i].ele.trim());
+	    	XML.Node("name", coordArray[i].wptName.trim());
+
 	    	XML.EndNode();
     	}
     	
@@ -122,7 +133,7 @@ function updateCoordinates(tabs) {
 function downloadWaypoints(string) {
 	 var element = document.createElement('a');
 	  element.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(string));
-	  element.setAttribute('download', "waypoint.xml");
+	  element.setAttribute('download', fileName);
 	  element.style.display = 'none';
 	  document.body.appendChild(element);
 	  element.click();
