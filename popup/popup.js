@@ -1,11 +1,4 @@
-/**
- * CSS to hide everything on the page, except for elements that have the
- * "beastify-image" class.
- */
-const hidePage = `body > :not(.beastify-image) {
-                    display: none;
-                  }`;
-
+var coordArray = [];
 
 /**
  * Listen for clicks on the buttons, and send the appropriate message to the
@@ -37,7 +30,27 @@ function listenForClicks() {
 	 * the content script in the active tab.
 	 */
     function reset(tabs) {
-	// TODO export coordinates
+    	// create XML
+		var length = coordArray.length;
+
+    	var XML = new XMLWriter();
+    	XML.BeginNode("gpx");
+    	
+    	for (var i = 0; i < length; i++) {
+	    	XML.BeginNode("wpt");
+	    	XML.Attrib("lat", coordArray[i].lat);
+	    	XML.Attrib("lon", coordArray[i].lon);
+	    	XML.Node("ele", coordArray[i].ele);
+	    	XML.EndNode();
+    	}
+    	
+    	XML.EndNode();
+    	
+    	var text = jQuery.parseXML( XML.XML.join("") );
+    	
+    	var string = new XMLSerializer().serializeToString(text);
+    	
+    	downloadWaypoints(string);
     	
     	// get the list from background script
     	var response = browser.tabs.sendMessage(tabs[0].id, {
@@ -86,7 +99,7 @@ function updateCoordinates(tabs) {
 
 	// parse the list and display it
 	response.then((jsonString) => {
-		var coordArray = JSON.parse( jsonString );	
+		coordArray = JSON.parse( jsonString );	
 		var length = coordArray.length;
 		
 		if (length == 0) {
@@ -94,7 +107,6 @@ function updateCoordinates(tabs) {
 			div.innerHTML = "(No coordinates are listed)";
 		} else {
 			// display saved coordiates
-			var combinedCoord = [];
 			for (var i = 0; i < length; i++) {
 				div.innerHTML += "<div class=\"coord\"><span class=\"coord-number\">"+ i + ": </span>" + coordArray[i].wptName + ", " + coordArray[i].lat + ", " + coordArray[i].lon +"<\div>";
 			}
@@ -107,15 +119,14 @@ function updateCoordinates(tabs) {
 	
 }
 
-
-/**
- * There was an error executing the script. Display the popup's error message,
- * and hide the normal UI.
- */
-function reportExecuteScriptError(error) {
-  document.querySelector("#popup-content").classList.add("hidden");
-  document.querySelector("#error-content").classList.remove("hidden");
-  console.error(`Failed to execute beastify content script: ${error.message}`);
+function downloadWaypoints(string) {
+	 var element = document.createElement('a');
+	  element.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(string));
+	  element.setAttribute('download', "waypoint.xml");
+	  element.style.display = 'none';
+	  document.body.appendChild(element);
+	  element.click();
+	  document.body.removeChild(element);
 }
 
 

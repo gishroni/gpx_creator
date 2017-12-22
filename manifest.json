@@ -37,7 +37,7 @@
    "content_scripts": [
     {
       "matches": ["*://*.map.geo.admin.ch/*"],
-      "js": ["content_scripts/manage_waypoint.js", "content_scripts/jquery-3.2.1.min.js"]
+      "js": ["content_scripts/manage_waypoint.js", "help_scripts/jquery-3.2.1.min.js"]
     }
   ]
 
