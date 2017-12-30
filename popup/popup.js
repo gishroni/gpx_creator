@@ -98,15 +98,15 @@ function reportError(error) {
  */
 function addCoord(tabs) {
 	// get waypoint name from text box
-	coordObj.wptName = document.querySelector("#wptName").value;
+	currentCoord.wptName = document.querySelector("#wptName").value;
 	// check if a name was entered
-	if (coordObj.wptName == "") {
+	if (currentCoord.wptName == "") {
 		// no name was entered
-		coordObj.wptName = "(no name)";
+		currentCoord.wptName = "(no name)";
 	};
     browser.tabs.sendMessage(tabs[0].id, {
       command: "add",
-      coord: coordObj
+      coord: currentCoord
     });
     updateSavedWaypoints(tabs);
     
@@ -178,10 +178,10 @@ function downloadWaypoints(string) {
 
 function addCoordToPopup(message) {
 	message.then((coordJson) => {
-		coordObj = JSON.parse(coordJson);	
-		document.querySelector("#lat").innerHTML = coordObj.lat;
-		document.querySelector("#lon").innerHTML = coordObj.lon;
-		document.querySelector("#ele").innerHTML = coordObj.ele;
+		currentCoord = JSON.parse(coordJson);	
+		document.querySelector("#lat").innerHTML = currentCoord.lat;
+		document.querySelector("#lon").innerHTML = currentCoord.lon;
+		document.querySelector("#ele").innerHTML = currentCoord.ele;
 	}).catch((error) => {
 		document.querySelector("#coordinatesDetails").innerHTML = error.message;
 		document.querySelector("#coordinatesDetails").className = "no-coordinates-message border";
