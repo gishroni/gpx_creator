@@ -7,29 +7,29 @@
 </head>
 
 <body>
-	<div class="coordinate-head" id="coordinatesHead">Current coordinates:</div>
-	<div class=current-coordinate id="coordinatesDetails">
+	<div class="current-coordinate border" id="coordinatesDetails">
+	<div class="head" id="coordinatesHead">Current coordinates:</div>
 		<div>Lat: <span id="lat">n/a</span></div>
 		<div>Lon: <span id="lon">n/a</span></div>
 		<div>Ele: <span id="ele">n/a</span></div>
 		<p>
 		<form>
 			<span class="waypoint-name-label">Waypoint name:</span>
-			<input class="waypoint-name-input" type="text" id="wptName" placeholder=" Enter a name">
+			<input class="waypoint-name-input" type="text" id="wptName" placeholder=" Enter a name" autofocus>
 		</form>
-		<div class="button add">Add coordinates</div>
+		<div class="name-warning" id="nameWarning">The name you entered has more than 16 characters -<br>some devices might not support it!</div>
+		<div id="addButton" class="button add"><img class="btn-icon" src="/icons/add_location.png"/> Add a waypoint</div>
 	</div>
 	<p>
-	<div class="saved-coordiantes">
-		<div class=coordinate-head>Saved coordinates:</div>
-		<div id="savedCoord">(No coordinates are listed)</div>
+	<div class="saved-waypoints border">
+		<div class=head>Saved waypoints:</div>
+		<div id="savedCoord"></div>
 	</div>
-	<div class="footer">
-		<div class="button export">Export and reset coordinates</div>
+	<div class="border footer">
+		<div class="download-text">Download the saved waypoints as a GPX file and clear the waypoint's list</div>
+	<div class="button download"><img class="btn-icon" src="/icons/file_download.png"/> Download</div>
 	</div>
-	<div id="error-content" class="hidden">
-		<p>Can't get coordinates from this web page.</p>
-	</div>
+
 	<script src="popup.js"></script>
 	<script src="/help_scripts/XMLWriter.js"></script>
 	<script src="/help_scripts/jquery-3.2.1.min.js"></script>

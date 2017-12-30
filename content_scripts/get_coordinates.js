@@ -5,10 +5,8 @@
 		var popover = $(".popover.bottom.ng-isolate-scope").css('display');
 		if (popover != "block") {
 			// popover is not active
-			var html = "<div class=\"no-coordinates-message\">"
-					+ "<div>No cordiates are marked on map.</div>"
-					+ "<div style:\"font-size: 1.3em;\">Make sure you right click on the map before you open this window.</div>"
-					+ "</div>";
+			var html =  "<div style='font-size:1.1em; margin-bottom:5px;font-weight: bold;'>No coordinates chosen</div>"
+					+ "<div style='font-size:1em'>Make sure you right-click the desired location on the map before you open this extension</div>";
 			return Promise.reject(new Error(html));
 		}
 
@@ -35,8 +33,7 @@
 		return jsonString;
 
 	} catch (err) {
-		return Promise.reject(new Error(
-				"Could not get coordiates from webpage: " + err));
+		return Promise.reject(new Error("Could not get coordiates from webpage: " + err));
 	}
 
 })();

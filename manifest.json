@@ -1,18 +1,20 @@
 {
 
   "manifest_version": 2,
-  "name": "Waypoint",
+  "name": "GPX creator",
   "version": "1.0",
 
-  "description": "Adds a red border to all webpages matching mozilla.org.",
+  "description": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
 
   "icons": {
-    "48": "icons/border-48.png"
+    "48": "icons/wpt-48.png",
+    "96": "icons/wpt-96.png"
+    
   },
   
    "browser_action": {
-        "default_icon": "icons/border-48.png",
-        "default_title": "Waypoint",
+        "default_icon": "icons/wpt-96.png",
+        "default_title": "GPX creator",
         "default_popup": "popup/popup.html"
     },
     
@@ -37,7 +39,7 @@
    "content_scripts": [
     {
       "matches": ["*://*.map.geo.admin.ch/*"],
-      "js": ["content_scripts/manage_waypoint.js", "help_scripts/jquery-3.2.1.min.js"]
+      "js": ["content_scripts/manage_waypoints.js", "help_scripts/jquery-3.2.1.min.js"]
     }
   ]
 
