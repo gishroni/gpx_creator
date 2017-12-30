@@ -5,8 +5,8 @@
 		var popover = $(".popover.bottom.ng-isolate-scope").css('display');
 		if (popover != "block") {
 			// popover is not active
-			var html =  "<div style='font-size:1.1em; margin-bottom:5px;font-weight: bold;'>No coordinates chosen</div>"
-					+ "<div style='font-size:1em'>Make sure you right-click the desired location on the map before you open this extension</div>";
+			var html =  "<div style='margin-bottom:5px;font-weight:bold;'>No coordinates chosen<br>"
+					+ "<span style='font-size:0.9em;font-weight:normal'>Make sure you right-click the desired location on the map before you open this extension</span></div>";
 			return Promise.reject(new Error(html));
 		}
 

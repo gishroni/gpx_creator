@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "GPX creator",
-  "version": "1.0",
+  "version": "1.1",
 
   "description": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
 

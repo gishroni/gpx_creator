@@ -34,6 +34,7 @@ html, body {
 .no-coordinates-message {
 	background-color: rgba(240, 49, 49, 0.8);
 	text-align: justify;
+	font-size: 1.1em;
 }
 
 .wrong-page {

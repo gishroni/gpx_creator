@@ -1,5 +1,6 @@
 var coordArray = [];
 var fileName = "waypoints.gpx"
+const parser = new DOMParser();
 
 /**
  * Listen for clicks on the buttons, and send the appropriate message to the
@@ -151,7 +152,8 @@ function updateSavedWaypoints(tabs) {
 				}
 				coordHtml += "><img class=\"btn-icon\" src=\"/icons/place.png\"/><span class=\"coord-name\"> " + coordArray[i].wptName + "</span>: " + coordArray[i].lat + ", " + coordArray[i].lon +"</div>";
 			}
-			div.innerHTML = coordHtml + "</div>";
+			coordHtml += "</div>";
+			div.appendChild(parseHTML(coordHtml));
 		}
 
 	}).catch((error) => {
@@ -178,12 +180,18 @@ function downloadWaypoints(string) {
 
 function addCoordToPopup(message) {
 	message.then((coordJson) => {
-		currentCoord = JSON.parse(coordJson);	
-		document.querySelector("#lat").innerHTML = currentCoord.lat;
-		document.querySelector("#lon").innerHTML = currentCoord.lon;
-		document.querySelector("#ele").innerHTML = currentCoord.ele;
+		currentCoord = JSON.parse(coordJson);
+		document.querySelector("#lat").innerHTML = "";
+		document.querySelector("#lat").appendChild(parseHTML(currentCoord.lat));
+		
+		document.querySelector("#lon").innerHTML = "";
+		document.querySelector("#lon").appendChild(parseHTML(currentCoord.lon));
+		
+		document.querySelector("#ele").innerHTML = "";
+		document.querySelector("#ele").appendChild(parseHTML(currentCoord.ele));
 	}).catch((error) => {
-		document.querySelector("#coordinatesDetails").innerHTML = error.message;
+		document.querySelector("#coordinatesDetails").innerHTML = "";
+		document.querySelector("#coordinatesDetails").appendChild(parseHTML(error.message));
 		document.querySelector("#coordinatesDetails").className = "no-coordinates-message border";
 
         console.log("No coordinates could be obtained from webpage: " + error);
@@ -193,6 +201,16 @@ function addCoordToPopup(message) {
 function loadSwisstopoAndclosePopup() {
 	window.open("https://map.geo.admin.ch");
 	window.close();
+}
+
+/**
+ * parse an HTML string to element to avoid direct assignment
+ * @param htmlString HTML element
+ * @returns
+ */
+function parseHTML(htmlString) {
+	var parsed = parser.parseFromString(htmlString, "text/html");
+	return parsed.getElementsByTagName("body")[0].firstChild;
 }
 
 /**
