@@ -24,7 +24,7 @@ function listenForClicks() {
     	XML.BeginNode("metadata");
     	XML.Node("name", fileName);
     	XML.Node("author", "This file was generated from the Swisstopo online map using the 'GPX creator' Firefox extension");
-//    	XML.Node("link", "link to add on");
+    	XML.Node("link", "https://addons.mozilla.org/en-US/firefox/addon/gpx-creator/");
     	XML.EndNode();
 
     	for (var i = 0; i < length; i++) {
