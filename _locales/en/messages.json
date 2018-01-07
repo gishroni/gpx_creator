@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "GPX creator",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
+    "description": "Description of the extension."
+  }
+}

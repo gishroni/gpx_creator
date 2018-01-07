@@ -1,10 +1,9 @@
 {
 
   "manifest_version": 2,
-  "name": "GPX creator",
-  "version": "1.1.1",
-
-  "description": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.2.0",
 
   "icons": {
     "48": "icons/wpt-48.png",
@@ -41,6 +40,7 @@
       "matches": ["*://*.map.geo.admin.ch/*"],
       "js": ["content_scripts/manage_waypoints.js", "help_scripts/jquery-3.2.1.min.js"]
     }
-  ]
+  ],
 
+	"default_locale": "de"
 }
