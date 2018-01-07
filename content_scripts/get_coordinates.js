@@ -17,12 +17,11 @@
 		var lat = coord[0];
 		var lon = coord[1];
 
-		// gets the table raw with elevation
-		var table = $('tr:contains("Elevation")');
-		// parse elevation
-		var elevation = table[0].cells[1].innerText.split(" ");
-		var ele = elevation[0];
-
+		// get the altitude string
+		var ele = $("[ng-if=altitude]");
+		// parse altitude
+		var ele = ele.text().match(/\d+\.?\d/);
+		
 		// create a json string
 		var json = {
 			"lat" : lat,
@@ -32,8 +31,9 @@
 		var jsonString = JSON.stringify(json);
 		return jsonString;
 
-	} catch (err) {
-		return Promise.reject(new Error("Could not get coordiates from webpage: " + err));
+	} catch (err) {        
+		console.log("No coordinates could be obtained from webpage: " + err);
+		return Promise.reject(new Error("Error: could not read coordiates from webpage."));
 	}
 
 })();

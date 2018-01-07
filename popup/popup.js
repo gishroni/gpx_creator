@@ -193,8 +193,6 @@ function addCoordToPopup(message) {
 		document.querySelector("#coordinatesDetails").innerHTML = "";
 		document.querySelector("#coordinatesDetails").appendChild(parseHTML(error.message));
 		document.querySelector("#coordinatesDetails").className = "no-coordinates-message border";
-
-        console.log("No coordinates could be obtained from webpage: " + error);
 	});
 }
 
