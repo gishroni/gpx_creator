@@ -9,18 +9,18 @@
     "description": "Description of the extension."
   },
   
-  "currentCoordinates" :{
-   "message": "Current coordinates:",
-    "description": "Current coordinates headline"
-  },
-    
-  "waypointNameLabel" :{
-   "message": "Waypoint name:",
-    "description": "Waypoint name label"
+  "currentCoordinates": {
+    "message": "Aktuelle Koordinaten:",
+    "description": "Aktuelle Koordinaten Titel"
   },
   
-  "nameWarning" :{
-   "message": "The name you entered has more than 16 characters -<br>some devices might not support it!",
-    "description": "Too long waypoint name warning"
+  "waypointNameLabel": {
+    "message": "Wegpunktsname:",
+    "description": "Wegpunktname label"
+  },
+  
+  "nameWarning": {
+    "message": "Der Wegpunktname hat mehr als 16 Zeichen nicht alle Geräte werden es unterstützen!",
+    "description": "Zu longe Wegpunktname Warnung"
   }
 }
