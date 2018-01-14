@@ -22,7 +22,7 @@
 		// get the altitude string
 		var ele = $("[ng-if=altitude]");
 		// parse altitude
-		var ele = ele.text().match(/\d+\.?\d/);
+		var ele = ele.text().match(/\d+\.?\d/)[0];
 		
 		// create a json string
 		var json = {
