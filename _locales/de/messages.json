@@ -5,11 +5,11 @@
   },
 
   "extensionDescription": {
-    "message": "Ermoeglicht die einfache Erstellung von GPX-Dateien mit Koordinaten aus der Swisstopo Online-Karte",
+    "message": "Ermoeglicht die einfache Erstellung von GPX-Dateien mit Koordinaten aus der Swisstopo Onlinekarte",
     "description": "Description of the extension."
   },
   
-  "currentCoordinates": {
+  "coordinatesHead": {
     "message": "Aktuelle Koordinaten:",
     "description": "Aktuelle Koordinaten Titel"
   },
@@ -20,7 +20,58 @@
   },
   
   "nameWarning": {
-    "message": "Der Wegpunktname hat mehr als 16 Zeichen nicht alle Geräte werden es unterstützen!",
+    "message": "Der Wegpunktname hat mehr als 16 Zeichen: nicht alle Geraete werden es unterstuetzen!",
     "description": "Zu longe Wegpunktname Warnung"
+  },
+  
+  "addButton": {
+    "message": "&nbspWegpunk hinzufuegen",
+    "description": "add waypoint button text"
+  },
+  
+  "wptName": {
+    "message": " Name geben",
+    "description": "textbox placeholder"
+  },
+  
+  "savedWaypointsHead": {
+    "message": "Gespeicherte Wegpunkte",
+    "description": "savd waypoints titel"
+  },
+  
+  "downloadText": {
+    "message": "Ladt die gespeicherten Wegpunkte als GPX-Datei herunter und loescht die Wegpunktsliste:",
+    "description": "download description"
+  },
+  
+  "listEmpty": {
+    "message": "Die Wegpunktsliste ist leer",
+    "description": "empty waypoint list message"
+  },
+  
+  "noCoord": {
+    "message": "Stellen Sie sicher, dass Sie mit der rechten Maustaste auf den gewuenschten Ort auf der Karte klicken, bevor Sie diese Erweiterung oeffnen",
+    "description": "no coordiante popup message"
+  },
+  
+  "noCoordHead": {
+    "message": "Keine Koordinaten ausgewaehlt",
+    "description": "no coordiante popup message titel"
+  },
+  
+  "wrongWebpage": {
+    "message": "Diese Erweiterung funktioniert nur in Verbindung mit der Swisstopo Onlinekauf der Swisstopo-Websitee:",
+    "description": "not Swisstopo webpage error message"
+  },
+  
+  "noCoordError": {
+    "message": "Fehler: die Koordinaten konnten nicht gelesen werden.",
+    "description": "could not get coordiates error message"
+  },
+  
+  "waypointAdded": {
+    "message": "Die aktuellen Koordinaten wurden erfolgreich zu deiner Wegpunktliste hinzugefuegt",
+    "description": "waypoint added to list message"
   }
+  
 }

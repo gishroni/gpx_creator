@@ -113,7 +113,7 @@ function addCoord(tabs) {
     
     // waypoint added - remove button and add message
     var addButton = document.querySelector("#addButton");
-    addButton.innerHTML = "The current coordinates were successfully added to your waypoint's list";
+    addButton.innerHTML = browser.i18n.getMessage("waypointAdded");
     addButton.className = "coordinate-added-message";
     // disable textbox
     document.querySelector("#wptName").disabled = true;
@@ -139,7 +139,9 @@ function updateSavedWaypoints(tabs) {
 		
 		if (length == 0) {
 			// no saved coordiates
-			div.innerHTML = "<div class=\"no-saved-wpt\">Your waypoint's list is empty</div>";
+			var text = 	browser.i18n.getMessage("listEmpty");
+
+			div.innerHTML = "<div class=\"no-saved-wpt\">" + text + "</div>";
 		} else {
 			var coordHtml = "<div class=\"saved-wpt\">";
 
@@ -227,19 +229,26 @@ function checkUrl(tabs) {
     	addCoordToPopup(response);
     	updateSavedWaypoints(tabs);
     	} else {
-    		document.querySelector("body").innerHTML = "<div class=\"wrong-page border\">This extension will only work in combination with the online map on the Swisstopo website:" +
+			var text = 	browser.i18n.getMessage("wrongWebpage");
+
+    		document.querySelector("body").innerHTML = "<div class=\"wrong-page border\">" + text +
     				"<br><a style='font-weight:bold' href=\"https://map.geo.admin.ch\" id=\"swisstopoLink\">https://map.geo.admin.ch</a></div>";
     		var el = document.querySelector("#swisstopoLink");
     		el.onclick = loadSwisstopoAndclosePopup;
     	}
 }
 
+/**
+ * inject language-adjusted texts to the popup's HTML
+ */
 function injectTexts() {
-	document.querySelector("#coordinatesHead").appendChild(parseHTML(browser.i18n.getMessage("currentCoordinates")));
-	document.querySelector("#waypointNameLabel").appendChild(parseHTML(browser.i18n.getMessage("waypointNameLabel")));
-//	document.querySelector("#nameWarning").appendChild(parseHTML(browser.i18n.getMessage("nameWarning")));
-
+	var elements = ["coordinatesHead", "waypointNameLabel", "nameWarning", "addButton", "savedWaypointsHead", "downloadText"]
 	
+	elements.forEach(function (entry) {
+		document.querySelector("#" + entry).appendChild(parseHTML(browser.i18n.getMessage(entry)));
+	});
+	
+	document.querySelector("#wptName").placeholder = browser.i18n.getMessage("wptName");
 }
 
 

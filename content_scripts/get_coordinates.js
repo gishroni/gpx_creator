@@ -5,8 +5,10 @@
 		var popover = $(".popover.bottom.ng-isolate-scope").css('display');
 		if (popover != "block") {
 			// popover is not active
-			var html =  "<div style='margin-bottom:5px;font-weight:bold;'>No coordinates selected<br>"
-					+ "<span style='font-size:0.9em;font-weight:normal'>Make sure you right-click the desired location on the map before you open this extension</span></div>";
+			var textHead = 	browser.i18n.getMessage("noCoordHead");
+			var text = 	browser.i18n.getMessage("noCoord");
+			var html =  "<div style='margin-bottom:5px;font-weight:bold;'>" + textHead + "<br>"
+					+ "<span style='font-size:0.9em;font-weight:normal'>" + text + "</span></div>";
 			return Promise.reject(new Error(html));
 		}
 
@@ -33,7 +35,8 @@
 
 	} catch (err) {        
 		console.log("No coordinates could be obtained from webpage: " + err);
-		return Promise.reject(new Error("Error: could not read coordiates from webpage."));
+		var textHead = 	browser.i18n.getMessage("noCoordError");
+		return Promise.reject(new Error(textHead));
 	}
 
 })();
