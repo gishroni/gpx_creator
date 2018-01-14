@@ -7,5 +7,20 @@
   "extensionDescription": {
     "message": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
     "description": "Description of the extension."
+  }, 
+  
+  "currentCoordinates" :{
+   "message": "Aktuelle Koordinaten:",
+    "description": "Aktuelle Koordinaten Titel"
+  },
+  
+  "waypointNameLabel" :{
+   "message": "Wegpunktsname:",
+    "description": "Waypoint name label"
+  },
+  
+  "nameWarning" :{
+   "message": "Der Wegpunktname hat mehr als 16 Zeichen -<br>nicht alle Geräte werden es unterstützen!",
+    "description": "Too long waypoint name warning"
   }
 }

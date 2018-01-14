@@ -8,16 +8,16 @@
 
 <body>
 	<div class="current-coordinate border" id="coordinatesDetails">
-	<div class="head" id="coordinatesHead">Current coordinates:</div>
+	<div class="head" id="coordinatesHead"></div>
 		<div>Lat: <span id="lat">n/a</span></div>
 		<div>Lon: <span id="lon">n/a</span></div>
 		<div>Ele: <span id="ele">n/a</span></div>
 		<p>
 		<form>
-			<span class="waypoint-name-label">Waypoint name:</span>
+			<span class="waypoint-name-label" id="waypointNameLabel"></span>
 			<input class="waypoint-name-input" type="text" id="wptName" placeholder=" Enter a name" autofocus>
 		</form>
-		<div class="name-warning" id="nameWarning">The name you entered has more than 16 characters -<br>some devices might not support it!</div>
+		<div class="name-warning" id="nameWarning"></div>
 		<div id="addButton" class="button add"><img class="btn-icon" src="/icons/add_location.png"/> Add a waypoint</div>
 	</div>
 	<p>

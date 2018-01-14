@@ -234,6 +234,16 @@ function checkUrl(tabs) {
     	}
 }
 
+function injectTexts() {
+	document.querySelector("#coordinatesHead").appendChild(parseHTML(browser.i18n.getMessage("currentCoordinates")));
+	document.querySelector("#waypointNameLabel").appendChild(parseHTML(browser.i18n.getMessage("waypointNameLabel")));
+//	document.querySelector("#nameWarning").appendChild(parseHTML(browser.i18n.getMessage("nameWarning")));
+
+	
+}
+
+
+injectTexts();
 var tabs = browser.tabs.query({currentWindow: true, active: true});
 tabs.then(checkUrl);
 
