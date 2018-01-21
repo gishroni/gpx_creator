@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "GPX creator",
+    "message": "GPX creator Switzerland",
     "description": "Name of the extension."
   },
 
@@ -15,22 +15,22 @@
   },
   
   "waypointNameLabel": {
-    "message": "Wegpunktsname:",
+    "message": "Wegpunkt:",
     "description": "Wegpunktname label"
   },
   
   "nameWarning": {
-    "message": "Der Wegpunktname hat mehr als 16 Zeichen: nicht alle Geraete werden es unterstuetzen!",
+    "message": "Dieser Name hat mehr als 16 Zeichen - für manche Geräte ist dies zu lang!",
     "description": "Zu longe Wegpunktname Warnung"
   },
   
   "addButton": {
-    "message": "&nbspWegpunk hinzufuegen",
+    "message": "&nbspWegpunkt hinzufügen",
     "description": "add waypoint button text"
   },
   
   "wptName": {
-    "message": " Name geben",
+    "message": " Name eingeben",
     "description": "textbox placeholder"
   },
   
@@ -40,27 +40,27 @@
   },
   
   "downloadText": {
-    "message": "Ladt die gespeicherten Wegpunkte als GPX-Datei herunter und loescht die Wegpunktsliste:",
+    "message": "Lädt die gespeicherten Wegpunkte als GPX-Datei herunter und löscht die Wegpunkteliste:",
     "description": "download description"
   },
   
   "listEmpty": {
-    "message": "Die Wegpunktsliste ist leer",
+    "message": "Die Wegpunkteliste ist leer",
     "description": "empty waypoint list message"
   },
   
   "noCoord": {
-    "message": "Stellen Sie sicher, dass Sie mit der rechten Maustaste auf den gewuenschten Ort auf der Karte klicken, bevor Sie diese Erweiterung oeffnen",
+    "message": "Stellen Sie sicher, dass Sie mit der rechten Maustaste auf den gewünschten Ort auf der Karte klicken, bevor Sie diese Erweiterung öffnen.",
     "description": "no coordiante popup message"
   },
   
   "noCoordHead": {
-    "message": "Keine Koordinaten ausgewaehlt",
+    "message": "Keine Koordinaten ausgewählt",
     "description": "no coordiante popup message titel"
   },
   
   "wrongWebpage": {
-    "message": "Diese Erweiterung funktioniert nur in Verbindung mit der Swisstopo Onlinekauf der Swisstopo-Websitee:",
+    "message": "Diese Erweiterung funktioniert nur in Verbindung mit der Onlinekarte der Swisstopo-Webseite:",
     "description": "not Swisstopo webpage error message"
   },
   
@@ -70,8 +70,13 @@
   },
   
   "waypointAdded": {
-    "message": "Die aktuellen Koordinaten wurden erfolgreich zu deiner Wegpunktliste hinzugefuegt",
+    "message": "Die aktuellen Koordinaten wurden erfolgreich zu deiner Wegpunktliste hinzugefügt",
     "description": "waypoint added to list message"
+  },
+  
+  "noDownloadWarning": {
+    "message": "Fehler: Wegpunkteliste konnte nicht heruntergeladen werden.",
+    "description": "message if download failed"
   }
   
 }

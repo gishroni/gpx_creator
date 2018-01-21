@@ -13,46 +13,52 @@ function listenForClicks() {
      * creates a .gpx file from the saved waypoints and download it to browser
      */
     function download(tabs) {
-    	// create XML
-		var length = coordArray.length;
-
-    	var XML = new XMLWriter();
-    	XML.BeginNode("gpx");
-    	XML.Attrib("version", "1.1");
-    	XML.Attrib("creator", "GPX creator");
-    	
-    	XML.BeginNode("metadata");
-    	XML.Node("name", fileName);
-    	XML.Node("author", "This file was generated from the Swisstopo online map using the 'GPX creator' Firefox extension");
-    	XML.Node("link", "https://addons.mozilla.org/en-US/firefox/addon/gpx-creator/");
-    	XML.EndNode();
-
-    	for (var i = 0; i < length; i++) {
-	    	XML.BeginNode("wpt");
-	    	XML.Attrib("lat", coordArray[i].lat.trim());
-	    	XML.Attrib("lon", coordArray[i].lon.trim());
-	    	XML.Node("ele", coordArray[i].ele.trim());
-	    	XML.Node("name", coordArray[i].wptName.trim());
+    	try {
+	    	// create XML
+			var length = coordArray.length;
+	
+	    	var XML = new XMLWriter();
+	    	XML.BeginNode("gpx");
+	    	XML.Attrib("version", "1.1");
+	    	XML.Attrib("creator", "GPX creator");
+	    	
+	    	XML.BeginNode("metadata");
+	    	XML.Node("name", fileName);
+	    	XML.Node("author", "This file was generated from the Swisstopo online map using the 'GPX creator' Firefox extension");
+	    	XML.Node("link", "https://addons.mozilla.org/en-US/firefox/addon/gpx-creator/");
 	    	XML.EndNode();
+	
+	    	for (var i = 0; i < length; i++) {
+		    	XML.BeginNode("wpt");
+		    	XML.Attrib("lat", coordArray[i].lat.trim());
+		    	XML.Attrib("lon", coordArray[i].lon.trim());
+		    	XML.Node("ele", coordArray[i].ele.trim());
+		    	XML.Node("name", coordArray[i].wptName.trim());
+		    	XML.EndNode();
+	    	}
+	    	
+	    	XML.EndNode();
+	    	
+	    	var xml = jQuery.parseXML( XML.XML.join("") );
+	    	var fileAsString = new XMLSerializer().serializeToString(xml);
+	    	
+	    	downloadWaypoints(fileAsString);
+	    	
+	    	// clear the coordinates' list
+	    	var response = browser.tabs.sendMessage(tabs[0].id, {
+	    		command: "resetList",
+	    	});
+	    	response.then(updateSavedWaypoints(tabs)).catch((error) => {
+	        console.log("could not clear list of saved coordinates: " + error);
+	    	});
+	    	// download successful - make sure error message is not displayed
+	    	document.querySelector("#noDownloadWarning").style.display='none';
+	    	// close the popup
+	    	window.close();
+    	
+    	} catch (err) {
+	    	document.querySelector("#noDownloadWarning").style.display='block';
     	}
-    	
-    	XML.EndNode();
-    	
-    	var xml = jQuery.parseXML( XML.XML.join("") );
-    	var fileAsString = new XMLSerializer().serializeToString(xml);
-    	
-    	downloadWaypoints(fileAsString);
-    	
-    	// clear the coordinates' list
-    	var response = browser.tabs.sendMessage(tabs[0].id, {
-    		command: "resetList",
-    	});
-    	response.then(updateSavedWaypoints(tabs)).catch((error) => {
-        console.log("could not clear list of saved coordinates: " + error);
-    	});
-    	
-    	// close the popup
-    	window.close();
     }
 
     if (e.target.classList.contains("add")) {
@@ -69,22 +75,24 @@ function listenForClicks() {
   // checks length of name and enables adding a waypoint with ENTER key
   var el = document.querySelector("#wptName");
   
-  el.addEventListener("keydown", (e) => {
-	  // if ENTER was pressed - add waypoint
-	  if (e.keyCode == 13) {
-		  e.preventDefault();
-		  var tabs = browser.tabs.query({active: true, currentWindow: true})
-	      tabs.then(addCoord).catch(reportError);
-	  } else {
-		  // count the name of the entered length and warn if too long
-		  var cs = document.querySelector("#wptName").value.length;
-		    if (cs > 16) {
-		    	document.querySelector("#nameWarning").style.display='block';
-		    } else {
-		    	document.querySelector("#nameWarning").style.display='none';
-		    }
-	  }
-  });
+  if (el) {
+	  el.addEventListener("keydown", (e) => {
+		  // if ENTER was pressed - add waypoint
+		  if (e.keyCode == 13) {
+			  e.preventDefault();
+			  var tabs = browser.tabs.query({active: true, currentWindow: true})
+		      tabs.then(addCoord).catch(reportError);
+		  } else {
+			  // count the name of the entered length and warn if too long
+			  var cs = document.querySelector("#wptName").value.length;
+			    if (cs > 16) {
+			    	document.querySelector("#nameWarning").style.display='block';
+			    } else {
+			    	document.querySelector("#nameWarning").style.display='none';
+			    }
+		  }
+	  });
+  }
 }
 
 /**
@@ -242,7 +250,7 @@ function checkUrl(tabs) {
  * inject language-adjusted texts to the popup's HTML
  */
 function injectTexts() {
-	var elements = ["coordinatesHead", "waypointNameLabel", "nameWarning", "addButton", "savedWaypointsHead", "downloadText"]
+	var elements = ["coordinatesHead", "waypointNameLabel", "nameWarning", "addButton", "savedWaypointsHead", "downloadText", "noDownloadWarning"]
 	
 	elements.forEach(function (entry) {
 		document.querySelector("#" + entry).appendChild(parseHTML(browser.i18n.getMessage(entry)));

@@ -1,6 +1,6 @@
 {
   "extensionName": {
-    "message": "GPX creator",
+    "message": "GPX creator Switzerland",
     "description": "Name of the extension."
   },
 
@@ -15,7 +15,7 @@
   },
     
   "waypointNameLabel": {
-    "message": "Waypoint name:",
+    "message": "Waypoint:",
     "description": "Waypoint name label"
   },
   
@@ -50,7 +50,7 @@
   },
   
   "noCoord": {
-    "message": "Make sure you right-click the desired location on the map before you open this extension",
+    "message": "Make sure you right-click the desired location on the map before you open this extension.",
     "description": "no coordiante popup message"
   },
   
@@ -72,6 +72,10 @@
   "waypointAdded": {
     "message": "The current coordinates were successfully added to your waypoint's list",
     "description": "waypoint added to list message"
-  }
+  },
   
+  "noDownloadWarning": {
+    "message": "Error: could not dowload the waypoint's list.",
+    "description": "message if download failed"
+  }
 }
