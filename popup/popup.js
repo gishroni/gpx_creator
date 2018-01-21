@@ -13,46 +13,52 @@ function listenForClicks() {
      * creates a .gpx file from the saved waypoints and download it to browser
      */
     function download(tabs) {
-    	// create XML
-		var length = coordArray.length;
-
-    	var XML = new XMLWriter();
-    	XML.BeginNode("gpx");
-    	XML.Attrib("version", "1.1");
-    	XML.Attrib("creator", "GPX creator");
-    	
-    	XML.BeginNode("metadata");
-    	XML.Node("name", fileName);
-    	XML.Node("author", "This file was generated from the Swisstopo online map using the 'GPX creator' Firefox extension");
-    	XML.Node("link", "https://addons.mozilla.org/en-US/firefox/addon/gpx-creator/");
-    	XML.EndNode();
-
-    	for (var i = 0; i < length; i++) {
-	    	XML.BeginNode("wpt");
-	    	XML.Attrib("lat", coordArray[i].lat.trim());
-	    	XML.Attrib("lon", coordArray[i].lon.trim());
-	    	XML.Node("ele", coordArray[i].ele.trim());
-	    	XML.Node("name", coordArray[i].wptName.trim());
+    	try {
+	    	// create XML
+			var length = coordArray.length;
+	
+	    	var XML = new XMLWriter();
+	    	XML.BeginNode("gpx");
+	    	XML.Attrib("version", "1.1");
+	    	XML.Attrib("creator", "GPX creator");
+	    	
+	    	XML.BeginNode("metadata");
+	    	XML.Node("name", fileName);
+	    	XML.Node("author", "This file was generated from the Swisstopo online map using the 'GPX creator' Firefox extension");
+	    	XML.Node("link", "https://addons.mozilla.org/en-US/firefox/addon/gpx-creator/");
 	    	XML.EndNode();
+	
+	    	for (var i = 0; i < length; i++) {
+		    	XML.BeginNode("wpt");
+		    	XML.Attrib("lat", coordArray[i].lat.trim());
+		    	XML.Attrib("lon", coordArray[i].lon.trim());
+		    	XML.Node("ele", coordArray[i].ele.trim());
+		    	XML.Node("name", coordArray[i].wptName.trim());
+		    	XML.EndNode();
+	    	}
+	    	
+	    	XML.EndNode();
+	    	
+	    	var xml = jQuery.parseXML( XML.XML.join("") );
+	    	var fileAsString = new XMLSerializer().serializeToString(xml);
+	    	
+	    	downloadWaypoints(fileAsString);
+	    	
+	    	// clear the coordinates' list
+	    	var response = browser.tabs.sendMessage(tabs[0].id, {
+	    		command: "resetList",
+	    	});
+	    	response.then(updateSavedWaypoints(tabs)).catch((error) => {
+	        console.log("could not clear list of saved coordinates: " + error);
+	    	});
+	    	// download successful - make sure error message is not displayed
+	    	document.querySelector("#noDownloadWarning").style.display='none';
+	    	// close the popup
+	    	window.close();
+    	
+    	} catch (err) {
+	    	document.querySelector("#noDownloadWarning").style.display='block';
     	}
-    	
-    	XML.EndNode();
-    	
-    	var xml = jQuery.parseXML( XML.XML.join("") );
-    	var fileAsString = new XMLSerializer().serializeToString(xml);
-    	
-    	downloadWaypoints(fileAsString);
-    	
-    	// clear the coordinates' list
-    	var response = browser.tabs.sendMessage(tabs[0].id, {
-    		command: "resetList",
-    	});
-    	response.then(updateSavedWaypoints(tabs)).catch((error) => {
-        console.log("could not clear list of saved coordinates: " + error);
-    	});
-    	
-    	// close the popup
-    	window.close();
     }
 
     if (e.target.classList.contains("add")) {
@@ -69,22 +75,24 @@ function listenForClicks() {
   // checks length of name and enables adding a waypoint with ENTER key
   var el = document.querySelector("#wptName");
   
-  el.addEventListener("keydown", (e) => {
-	  // if ENTER was pressed - add waypoint
-	  if (e.keyCode == 13) {
-		  e.preventDefault();
-		  var tabs = browser.tabs.query({active: true, currentWindow: true})
-	      tabs.then(addCoord).catch(reportError);
-	  } else {
-		  // count the name of the entered length and warn if too long
-		  var cs = document.querySelector("#wptName").value.length;
-		    if (cs > 16) {
-		    	document.querySelector("#nameWarning").style.display='block';
-		    } else {
-		    	document.querySelector("#nameWarning").style.display='none';
-		    }
-	  }
-  });
+  if (el) {
+	  el.addEventListener("keydown", (e) => {
+		  // if ENTER was pressed - add waypoint
+		  if (e.keyCode == 13) {
+			  e.preventDefault();
+			  var tabs = browser.tabs.query({active: true, currentWindow: true})
+		      tabs.then(addCoord).catch(reportError);
+		  } else {
+			  // count the name of the entered length and warn if too long
+			  var cs = document.querySelector("#wptName").value.length;
+			    if (cs > 16) {
+			    	document.querySelector("#nameWarning").style.display='block';
+			    } else {
+			    	document.querySelector("#nameWarning").style.display='none';
+			    }
+		  }
+	  });
+  }
 }
 
 /**
@@ -113,7 +121,7 @@ function addCoord(tabs) {
     
     // waypoint added - remove button and add message
     var addButton = document.querySelector("#addButton");
-    addButton.innerHTML = "The current coordinates were successfully added to your waypoint's list";
+    addButton.innerHTML = browser.i18n.getMessage("waypointAdded");
     addButton.className = "coordinate-added-message";
     // disable textbox
     document.querySelector("#wptName").disabled = true;
@@ -139,7 +147,9 @@ function updateSavedWaypoints(tabs) {
 		
 		if (length == 0) {
 			// no saved coordiates
-			div.innerHTML = "<div class=\"no-saved-wpt\">Your waypoint's list is empty</div>";
+			var text = 	browser.i18n.getMessage("listEmpty");
+
+			div.innerHTML = "<div class=\"no-saved-wpt\">" + text + "</div>";
 		} else {
 			var coordHtml = "<div class=\"saved-wpt\">";
 
@@ -227,13 +237,30 @@ function checkUrl(tabs) {
     	addCoordToPopup(response);
     	updateSavedWaypoints(tabs);
     	} else {
-    		document.querySelector("body").innerHTML = "<div class=\"wrong-page border\">This extension will only work in combination with the online map on the Swisstopo website:" +
+			var text = 	browser.i18n.getMessage("wrongWebpage");
+
+    		document.querySelector("body").innerHTML = "<div class=\"wrong-page border\">" + text +
     				"<br><a style='font-weight:bold' href=\"https://map.geo.admin.ch\" id=\"swisstopoLink\">https://map.geo.admin.ch</a></div>";
     		var el = document.querySelector("#swisstopoLink");
     		el.onclick = loadSwisstopoAndclosePopup;
     	}
 }
 
+/**
+ * inject language-adjusted texts to the popup's HTML
+ */
+function injectTexts() {
+	var elements = ["coordinatesHead", "waypointNameLabel", "nameWarning", "addButton", "savedWaypointsHead", "downloadText", "noDownloadWarning"]
+	
+	elements.forEach(function (entry) {
+		document.querySelector("#" + entry).appendChild(parseHTML(browser.i18n.getMessage(entry)));
+	});
+	
+	document.querySelector("#wptName").placeholder = browser.i18n.getMessage("wptName");
+}
+
+
+injectTexts();
 var tabs = browser.tabs.query({currentWindow: true, active: true});
 tabs.then(checkUrl);
 

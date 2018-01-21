@@ -1,11 +1,82 @@
 {
   "extensionName": {
-    "message": "GPX creator",
+    "message": "GPX creator Switzerland",
     "description": "Name of the extension."
   },
 
   "extensionDescription": {
-    "message": "Ermoeglicht die einfache Erstellung von GPX-Dateien mit Koordinaten aus der Swisstopo Online-Karte",
+    "message": "Ermoeglicht die einfache Erstellung von GPX-Dateien mit Koordinaten aus der Swisstopo Onlinekarte",
     "description": "Description of the extension."
+  },
+  
+  "coordinatesHead": {
+    "message": "Aktuelle Koordinaten:",
+    "description": "Aktuelle Koordinaten Titel"
+  },
+  
+  "waypointNameLabel": {
+    "message": "Wegpunkt:",
+    "description": "Wegpunktname label"
+  },
+  
+  "nameWarning": {
+    "message": "Dieser Name hat mehr als 16 Zeichen - für manche Geräte ist dies zu lang!",
+    "description": "Zu longe Wegpunktname Warnung"
+  },
+  
+  "addButton": {
+    "message": "&nbspWegpunkt hinzufügen",
+    "description": "add waypoint button text"
+  },
+  
+  "wptName": {
+    "message": " Name eingeben",
+    "description": "textbox placeholder"
+  },
+  
+  "savedWaypointsHead": {
+    "message": "Gespeicherte Wegpunkte",
+    "description": "savd waypoints titel"
+  },
+  
+  "downloadText": {
+    "message": "Lädt die gespeicherten Wegpunkte als GPX-Datei herunter und löscht die Wegpunkteliste:",
+    "description": "download description"
+  },
+  
+  "listEmpty": {
+    "message": "Die Wegpunkteliste ist leer",
+    "description": "empty waypoint list message"
+  },
+  
+  "noCoord": {
+    "message": "Stellen Sie sicher, dass Sie mit der rechten Maustaste auf den gewünschten Ort auf der Karte klicken, bevor Sie diese Erweiterung öffnen.",
+    "description": "no coordiante popup message"
+  },
+  
+  "noCoordHead": {
+    "message": "Keine Koordinaten ausgewählt",
+    "description": "no coordiante popup message titel"
+  },
+  
+  "wrongWebpage": {
+    "message": "Diese Erweiterung funktioniert nur in Verbindung mit der Onlinekarte der Swisstopo-Webseite:",
+    "description": "not Swisstopo webpage error message"
+  },
+  
+  "noCoordError": {
+    "message": "Fehler: die Koordinaten konnten nicht gelesen werden.",
+    "description": "could not get coordiates error message"
+  },
+  
+  "waypointAdded": {
+    "message": "Die aktuellen Koordinaten wurden erfolgreich zu deiner Wegpunktliste hinzugefügt",
+    "description": "waypoint added to list message"
+  },
+  
+  "noDownloadWarning": {
+    "message": "Fehler: Wegpunkteliste konnte nicht heruntergeladen werden.",
+    "description": "message if download failed"
   }
+  
 }

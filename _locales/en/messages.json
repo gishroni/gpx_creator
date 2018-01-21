@@ -1,11 +1,81 @@
 {
   "extensionName": {
-    "message": "GPX creator",
+    "message": "GPX creator Switzerland",
     "description": "Name of the extension."
   },
 
   "extensionDescription": {
     "message": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
     "description": "Description of the extension."
+  }, 
+  
+  "coordinatesHead": {
+    "message": "Current coordinates:",
+    "description": "Current coordinates headline"
+  },
+    
+  "waypointNameLabel": {
+    "message": "Waypoint:",
+    "description": "Waypoint name label"
+  },
+  
+  "nameWarning": {
+    "message": "The name you entered has more than 16 characters: some devices might not support it!",
+    "description": "Too long waypoint name warning"
+  },
+  
+  "addButton": {
+    "message": "&nbspAdd a waypoint",
+    "description": "add waypoint button text"
+  },
+  
+  "wptName": {
+    "message": " add a name",
+    "description": "textbox placeholder"
+  },
+  
+  "savedWaypointsHead": {
+    "message": "Saved waypoints:",
+    "description": "savd waypoints titel"
+  },
+  
+  "downloadText": {
+    "message": "Download the saved waypoints as a GPX file and clear the waypoint's list:",
+    "description": "download description"
+  },
+  
+  "listEmpty": {
+    "message": "Your waypoint's list is empty",
+    "description": "empty waypoint list message"
+  },
+  
+  "noCoord": {
+    "message": "Make sure you right-click the desired location on the map before you open this extension.",
+    "description": "no coordiante popup message"
+  },
+  
+  "noCoordHead": {
+    "message": "No coordinates selected",
+    "description": "no coordiante popup message titel"
+  },
+  
+  "wrongWebpage": {
+    "message": "This extension will only work in combination with the online map on the Swisstopo website:",
+    "description": "not Swisstopo webpage error message"
+  },
+  
+  "noCoordError": {
+    "message": "Error: could not read coordiates from webpage.",
+    "description": "could not get coordiates error message"
+  },
+  
+  "waypointAdded": {
+    "message": "The current coordinates were successfully added to your waypoint's list",
+    "description": "waypoint added to list message"
+  },
+  
+  "noDownloadWarning": {
+    "message": "Error: could not dowload the waypoint's list.",
+    "description": "message if download failed"
   }
 }
