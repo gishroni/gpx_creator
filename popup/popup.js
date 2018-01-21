@@ -121,7 +121,8 @@ function addCoord(tabs) {
     
     // waypoint added - remove button and add message
     var addButton = document.querySelector("#addButton");
-    addButton.innerHTML = browser.i18n.getMessage("waypointAdded");
+    addButton.innerHTML = "";
+    addButton.appendChild(parseHTML(browser.i18n.getMessage("waypointAdded")));
     addButton.className = "coordinate-added-message";
     // disable textbox
     document.querySelector("#wptName").disabled = true;
@@ -148,8 +149,8 @@ function updateSavedWaypoints(tabs) {
 		if (length == 0) {
 			// no saved coordiates
 			var text = 	browser.i18n.getMessage("listEmpty");
-
-			div.innerHTML = "<div class=\"no-saved-wpt\">" + text + "</div>";
+			div.innerHTML = "";
+			div.appendChild(parseHTML("<div class=\"no-saved-wpt\">" + text + "</div>"));
 		} else {
 			var coordHtml = "<div class=\"saved-wpt\">";
 
@@ -237,10 +238,10 @@ function checkUrl(tabs) {
     	addCoordToPopup(response);
     	updateSavedWaypoints(tabs);
     	} else {
-			var text = 	browser.i18n.getMessage("wrongWebpage");
-
-    		document.querySelector("body").innerHTML = "<div class=\"wrong-page border\">" + text +
-    				"<br><a style='font-weight:bold' href=\"https://map.geo.admin.ch\" id=\"swisstopoLink\">https://map.geo.admin.ch</a></div>";
+			var text = browser.i18n.getMessage("wrongWebpage");
+			document.querySelector("body").innerHTML = "";
+    		document.querySelector("body").appendChild(parseHTML("<div class=\"wrong-page border\">" + text +
+    				"<br><a style='font-weight:bold' href=\"https://map.geo.admin.ch\" id=\"swisstopoLink\">https://map.geo.admin.ch</a></div>"));
     		var el = document.querySelector("#swisstopoLink");
     		el.onclick = loadSwisstopoAndclosePopup;
     	}
