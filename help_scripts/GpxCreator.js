@@ -10,7 +10,10 @@ function createGpx(coordArray) {
 	XML.BeginNode("gpx");
 	XML.Attrib("version", "1.1");
 	XML.Attrib("creator", "GPX creator Switzerland");
-	
+	XML.Attrib("xsi:schemaLocation", "http://www.topografix.com/GPX/1/1/gpx.xsd");
+	XML.Attrib("xmlns", "http://www.topografix.com/GPX/1/1" );
+	XML.Attrib("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+
 	// start metadata
 	XML.BeginNode("metadata");
 	XML.Node("name", fileName);
@@ -18,7 +21,7 @@ function createGpx(coordArray) {
 	// start link
 	XML.BeginNode("link");
 	XML.Attrib("href", "https://addons.mozilla.org/firefox/addon/gpx-creator/");
-	XML.Node("text", "This file was generated from the Swisstopo online map using the 'GPX creator Switzerland' Firefox extension");
+	XML.Node("text", "GPX creator Switzerland");
 	// end link
 	XML.EndNode();
 	
