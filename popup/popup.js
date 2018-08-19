@@ -28,8 +28,10 @@ function listenForClicks() {
 	    	});
 	    	// download successful - make sure error message is not displayed
 	    	document.querySelector("#noDownloadWarning").style.display='none';
-	    	// close the popup
-	    	window.close();
+	    	// close the popup - but first sleep a bit to allow browser to open save dialog
+	    	sleep(300).then(() => {
+	    		window.close();
+	    	})
     	
     	} catch (err) {
 	    	document.querySelector("#noDownloadWarning").style.display='block';
@@ -234,6 +236,10 @@ function injectTexts() {
 	
 	document.querySelector("#wptName").placeholder = browser.i18n.getMessage("wptName");
 }
+
+function sleep (time) {
+	  return new Promise((resolve) => setTimeout(resolve, time));
+	}
 
 
 injectTexts();
