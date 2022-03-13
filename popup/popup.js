@@ -127,10 +127,11 @@ function updateSavedWaypoints(tabs) {
 			var text = browser.i18n.getMessage("listEmpty");
 			div.innerHTML = "";
 			div.appendChild(parseHTML("<div class=\"no-saved-wpt\">" + text + "</div>"));
+			document.querySelector("#downloadBox").style.display = "none";
 		} else {
 			var coordHtml = "<div class=\"saved-wpt\">";
 
-			// display saved coordiates
+			// display saved coordinates
 			for (var i = 0; i < length; i++) {
 				coordHtml += "<div";
 				if (i > 0) {
@@ -141,6 +142,7 @@ function updateSavedWaypoints(tabs) {
 			}
 			coordHtml += "</div>";
 			div.appendChild(parseHTML(coordHtml));
+			document.querySelector("#downloadBox").style.display = "block";
 		}
 
 	}).catch((error) => {
