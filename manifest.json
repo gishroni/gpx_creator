@@ -8,39 +8,34 @@
   "icons": {
     "48": "icons/wpt-48.png",
     "96": "icons/wpt-96.png"
-    
   },
   
-   "browser_action": {
+  "browser_action": {
         "default_icon": "icons/wpt-96.png",
         "default_title": "GPX creator",
         "default_popup": "popup/popup.html"
-    },
-    
-    "permissions": [
+  },
+  
+  "permissions": [
     "activeTab"
   ],
 
 
-    "commands": {
+  "commands": {
         "_execute_browser_action": {
             "suggested_key": {
                 "default": "Alt+W"
             }
         }
-    },
+  },
   
-   
-  "web_accessible_resources": [
-    "images/snake.jpg"
-  ],
-  
-   "content_scripts": [
+
+  "content_scripts": [
     {
       "matches": ["*://*.map.geo.admin.ch/*"],
       "js": ["content_scripts/manage_waypoints.js", "help_scripts/jquery-3.2.1.min.js"]
     }
   ],
 
-	"default_locale": "en"
+  "default_locale": "en"
 }

@@ -1,7 +1,7 @@
 (function() {
 
 	try {
-		// see if coordiante popover is active
+		// see if coordinate popover is active
 		var popover = $(".popover.bottom.ng-isolate-scope").css('display');
 		if (popover != "block") {
 			// popover is not active
@@ -12,7 +12,7 @@
 			return Promise.reject(new Error(html));
 		}
 
-		// gets the table raw with the WGS coordiates
+		// gets the table row with the WGS coordinates
 		var table = $('tr:contains("WGS 84")');
 		// parse the coordinates
 		var coord = table[0].cells[1].innerText.split(",");
@@ -23,7 +23,7 @@
 		var ele = $("[ng-if=altitude]");
 		// parse altitude
 		var ele = ele.text().match(/\d+\.?\d/)[0];
-		
+
 		// create a json string
 		var json = {
 			"lat" : lat,
@@ -33,9 +33,9 @@
 		var jsonString = JSON.stringify(json);
 		return jsonString;
 
-	} catch (err) {        
+	} catch (err) {
 		console.log("No coordinates could be obtained from webpage: " + err);
-		var textHead = 	browser.i18n.getMessage("noCoordError");
+		var textHead = browser.i18n.getMessage("noCoordError");
 		return Promise.reject(new Error(textHead));
 	}
 
