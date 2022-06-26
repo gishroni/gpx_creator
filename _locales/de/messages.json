@@ -21,7 +21,7 @@
   
   "nameWarning": {
     "message": "Dieser Name hat mehr als 16 Zeichen - für manche Geräte ist dies zu lang!",
-    "description": "Zu longe Wegpunktname Warnung"
+    "description": "Zu lange Wegpunktname Warnung"
   },
   
   "addButton": {
@@ -30,13 +30,13 @@
   },
   
   "wptName": {
-    "message": " Name eingeben",
+    "message": " Namen eingeben",
     "description": "textbox placeholder"
   },
   
   "savedWaypointsHead": {
     "message": "Gespeicherte Wegpunkte",
-    "description": "savd waypoints titel"
+    "description": "saved waypoints titel"
   },
   
   "downloadText": {
@@ -51,12 +51,12 @@
   
   "noCoord": {
     "message": "Stellen Sie sicher, dass Sie mit der rechten Maustaste auf den gewünschten Ort auf der Karte klicken, bevor Sie diese Erweiterung öffnen.",
-    "description": "no coordiante popup message"
+    "description": "no coordinate popup message"
   },
   
   "noCoordHead": {
     "message": "Keine Koordinaten ausgewählt",
-    "description": "no coordiante popup message titel"
+    "description": "no coordinate popup message titel"
   },
   
   "wrongWebpage": {
@@ -66,7 +66,7 @@
   
   "noCoordError": {
     "message": "Fehler: die Koordinaten konnten nicht gelesen werden.",
-    "description": "could not get coordiates error message"
+    "description": "could not get coordinates error message"
   },
   
   "waypointAdded": {

@@ -7,13 +7,13 @@
   "extensionDescription": {
     "message": "Enables easy creation of GPX files from coordinates obtained from the online Swisstopo map",
     "description": "Description of the extension."
-  }, 
+  },
   
   "coordinatesHead": {
     "message": "Current coordinates:",
     "description": "Current coordinates headline"
   },
-    
+
   "waypointNameLabel": {
     "message": "Waypoint:",
     "description": "Waypoint name label"
@@ -36,27 +36,27 @@
   
   "savedWaypointsHead": {
     "message": "Saved waypoints:",
-    "description": "savd waypoints titel"
+    "description": "saved waypoints title"
   },
   
   "downloadText": {
-    "message": "Download the saved waypoints as a GPX file and clear the waypoint's list:",
+    "message": "Download the saved waypoints as a GPX file and clear the waypoint list:",
     "description": "download description"
   },
   
   "listEmpty": {
-    "message": "Your waypoint's list is empty",
+    "message": "Your waypoint list is empty",
     "description": "empty waypoint list message"
   },
   
   "noCoord": {
     "message": "Make sure you right-click the desired location on the map before you open this extension.",
-    "description": "no coordiante popup message"
+    "description": "no coordinate popup message"
   },
   
   "noCoordHead": {
     "message": "No coordinates selected",
-    "description": "no coordiante popup message titel"
+    "description": "no coordinate popup message title"
   },
   
   "wrongWebpage": {
@@ -65,17 +65,17 @@
   },
   
   "noCoordError": {
-    "message": "Error: could not read coordiates from webpage.",
-    "description": "could not get coordiates error message"
+    "message": "Error: could not read coordinates from webpage.",
+    "description": "could not get coordinates error message"
   },
   
   "waypointAdded": {
-    "message": "The current coordinates were successfully added to your waypoint's list",
+    "message": "The coordinates were successfully added to your waypoint list",
     "description": "waypoint added to list message"
   },
   
   "noDownloadWarning": {
-    "message": "Error: could not dowload the waypoint's list.",
+    "message": "Error: could not download the waypoint list.",
     "description": "message if download failed"
   }
 }
